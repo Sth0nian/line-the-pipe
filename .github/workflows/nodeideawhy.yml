@@ -19,7 +19,6 @@ jobs:
       - uses: actions/setup-node@v1.4.3
         id: noders
       - run: |
-          npm init -f
           npm install express
           npm install forever -g
           forever start script.js
