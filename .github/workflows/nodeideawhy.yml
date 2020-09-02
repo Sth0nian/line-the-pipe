@@ -15,20 +15,10 @@ jobs:
   k3s-time:
     runs-on: ubuntu-20.04
     steps:
-      - uses: debianmaster/actions-k3s@master
-        id: k3s
-        with:
-          version: 'v0.9.1'
+      - uses: actions/setup-node@v1.4.3
+        id: ndoe
       - run: |
-          kubectl get nodes
-          kubectl get pods -A
-          sleep 20
-          kubectl get pods -A
-          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
-          chmod 700 get_helm.sh
-          ./get_helm.sh
-          helm repo add bitnami https://charts.bitnami.com/bitnami
-          helm install meaniepants bitnami/mean --version 6.1.1
-          kubectl port-forward --namespace default svc/meaniepants-mean 80:80
+          npm init
+          npm install express
           ls -al
           pwd
