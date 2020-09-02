@@ -12,8 +12,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  alpine-terraform:
-    runs-on: ubuntu-latest
+  k3s-time:
+    runs-on: ubuntu-20.04
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
@@ -26,5 +26,5 @@ jobs:
       - name: run k3s
         run: |
           curl -sfL https://get.k3s.io | sh -
-          sudo chmod -R 777 /etc/rancher/k3s/k3s.yaml
+          chmod -R 777 /etc/rancher/k3s/k3s.yaml
           k3s kubectl get node --write-kubeconfig-mode
