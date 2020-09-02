@@ -29,3 +29,6 @@ jobs:
           ./get_helm.sh
           helm repo add bitnami https://charts.bitnami.com/bitnami
           helm install meaniepants bitnami/mean --version 6.1.1
+          kubectl port-forward --namespace default svc/meaniepants-mean 80:80
+          ls -al
+          pwd
