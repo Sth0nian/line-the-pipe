@@ -21,5 +21,7 @@ jobs:
       - run: |
           npm init -f
           npm install express
-          ls -al
-          pwd
+          npm install forever -g
+          forever start script.js
+          node getip.js
+          sleep 20
