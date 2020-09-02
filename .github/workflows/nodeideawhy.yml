@@ -15,17 +15,12 @@ jobs:
   k3s-time:
     runs-on: ubuntu-20.04
     steps:
-      - name: install k3s
-        run: |
-          curl -sfL https://get.k3s.io | sh -
-      
-      - name: set kubeconfig
-        env:
-          KUBECONFIG: /etc/rancher/k3s/k3s.yaml
-        run: sudo mkdir ~/.kube && sudo cp ${KUBECONFIG} ~/.kube/config
-      
-      - name: test
-        run: |
-          sleep 10
-          sudo kubectl get nodes
-          sudo kubectl get pod -A
+      - uses: debianmaster/actions-k3s@master
+        id: k3s
+        with:
+          version: 'v0.9.1'
+      - run: |
+          kubectl get nodes
+          kubectl get pods -A
+          sleep 20
+          kubectl get pods -A
