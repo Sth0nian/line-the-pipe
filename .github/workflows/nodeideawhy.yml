@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-node@v1.4.3
         id: ndoe
       - run: |
-          npm init
+          npm init -f
           npm install express
           ls -al
           pwd
