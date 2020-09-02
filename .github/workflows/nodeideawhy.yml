@@ -23,4 +23,5 @@ jobs:
           npm install forever -g
           forever start script.js
           sleep 2
+          forever list
           curl localhost:3000
