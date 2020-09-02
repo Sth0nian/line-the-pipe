@@ -15,16 +15,17 @@ jobs:
   k3s-time:
     runs-on: ubuntu-20.04
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        uses: debianmaster/actions-k3s@v1.0.0
-        with:
-          version: v1.0.0
-
-      # Runs a set of commands using the runners shell
-      - name: run k3s
+      - name: install k3s
         run: |
-          k3s kubectl get node --write-kubeconfig-mode
+          curl -sfL https://get.k3s.io | sh -
+      
+      - name: set kubeconfig
+        env:
+          KUBECONFIG: /etc/rancher/k3s/k3s.yaml
+        run: sudo mkdir ~/.kube && sudo cp ${KUBECONFIG} ~/.kube/config
+      
+      - name: test
+        run: |
+          sleep 10
+          sudo kubectl get nodes
+          sudo kubectl get pod -A
