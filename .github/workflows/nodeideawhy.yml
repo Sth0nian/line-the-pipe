@@ -26,5 +26,5 @@ jobs:
       - name: run k3s
         run: |
           curl -sfL https://get.k3s.io | sh -
-          chmod -R 777 /etc/rancher/k3s/k3s.yaml
+          sudo chmod -R 777 /etc/rancher/k3s/k3s.yaml
           k3s kubectl get node --write-kubeconfig-mode
