@@ -12,11 +12,12 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  k3s-time:
+  node-time:
     runs-on: ubuntu-20.04
     steps:
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1.4.3
-        id: ndoe
+        id: noders
       - run: |
           npm init -f
           npm install express
